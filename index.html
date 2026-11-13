@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESTATE HUB | Premium Indian Real Estate & Luxury Living</title>
+  <meta name="description" content="Discover premium residential villas, luxury apartments, and commercial real estate across India with Estate Hub. Find Your Place. Build Your Future.">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" aria-label="Estate Hub Homepage">
+        <div class="brand-mark">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">ESTATE HUB</span>
+          <span class="brand-tagline">Find Your Place. Build Your Future.</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+          <li class="nav-item has-dropdown">
+            <a href="properties.html" class="nav-link">
+              Properties
+              <svg class="nav-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </a>
+            <div class="nav-dropdown">
+              <a href="properties.html" class="dropdown-link">All Properties</a>
+              <a href="residential.html" class="dropdown-link">Residential Properties</a>
+              <a href="commercial.html" class="dropdown-link">Commercial Properties</a>
+            </div>
+          </li>
+          <li class="nav-item"><a href="projects.html" class="nav-link">Projects</a></li>
+          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="fav-header-btn" aria-label="View Favourites" title="Saved Favourites">
+          <svg viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span class="fav-badge fav-count-badge" style="display: none;">0</span>
+        </button>
+
+        <button class="btn btn-primary btn-sm" onclick="openModal('listPropertyModal')">List Your Property</button>
+
+        <button class="menu-toggle" aria-label="Toggle Navigation Menu">
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==================== SECTION 1: HERO BANNER ==================== -->
+    <section class="hero">
+      <div class="hero-bg">
+        <img src="assets/images/hero-real-estate.webp" alt="Luxurious Indian residential architecture with landscaped surroundings" fetchpriority="high">
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        <span class="hero-eyebrow">
+          <span>◆</span> Fictional Luxury Real Estate Demonstration
+        </span>
+        <h1 class="hero-title">Find a Place You'll Love to Call Home.</h1>
+        <p class="hero-subtitle">
+          Explore thoughtfully selected homes, premium residences, and investment opportunities with Estate Hub. Your gateway to premier properties across India.
+        </p>
+        <div class="hero-buttons">
+          <a href="properties.html" class="btn btn-primary btn-lg">Explore Properties</a>
+          <button class="btn btn-outline-white btn-lg" onclick="openModal('listPropertyModal')">List Your Property</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 2: PROPERTY SEARCH ==================== -->
+    <div class="container search-panel-container">
+      <div class="search-panel">
+        <div class="search-tabs">
+          <button class="search-tab active" data-purpose="all" onclick="setSearchPurpose('all', this)">All</button>
+          <button class="search-tab" data-purpose="buy" onclick="setSearchPurpose('buy', this)">Buy</button>
+          <button class="search-tab" data-purpose="rent" onclick="setSearchPurpose('rent', this)">Rent</button>
+        </div>
+        <form id="heroSearchForm" class="search-grid" onsubmit="handleHeroSearch(event)">
+          <div class="form-group">
+            <label class="form-label" for="searchLocation">Location</label>
+            <select id="searchLocation" class="form-select">
+              <option value="all">All Locations</option>
+              <option value="Silver Oak">Silver Oak Residency</option>
+              <option value="Lakeview">Lakeview Gardens</option>
+              <option value="Maple Grove">Maple Grove Estate</option>
+              <option value="Green Valley">Green Valley Enclave</option>
+              <option value="Harmony Heights">Harmony Heights</option>
+              <option value="Sunrise Park">Sunrise Park</option>
+              <option value="The Urban Square">The Urban Square</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="searchCategory">Property Type</label>
+            <select id="searchCategory" class="form-select">
+              <option value="all">All Types</option>
+              <option value="apartments">Luxury Apartments</option>
+              <option value="villas">Independent Villas</option>
+              <option value="houses">Residential Houses</option>
+              <option value="plots">Residential Plots</option>
+              <option value="commercial">Commercial Spaces</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="searchBudget">Max Budget</label>
+            <select id="searchBudget" class="form-select">
+              <option value="all">Any Budget</option>
+              <option value="7500000">Up to ₹75 Lakh</option>
+              <option value="15000000">Up to ₹1.5 Crore</option>
+              <option value="25000000">Up to ₹2.5 Crore</option>
+              <option value="50000000">Up to ₹5.0 Crore</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="searchBedrooms">Bedrooms</label>
+            <select id="searchBedrooms" class="form-select">
+              <option value="all">Any Bedrooms</option>
+              <option value="2">2 BHK</option>
+              <option value="3">3 BHK</option>
+              <option value="4">4+ BHK</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary" style="height: 48px; width: 100%;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              Search
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ==================== SECTION 3: WELCOME TO ESTATE HUB ==================== -->
+    <section class="section section-cream">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3.5rem; align-items: center;">
+          <div>
+            <span class="section-eyebrow">Welcome to Estate Hub</span>
+            <h2 class="section-title">Your Property Journey Starts Here.</h2>
+            <p style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.25rem;">
+              Estate Hub is a premier property discovery platform representing bespoke residential communities, luxury penthouses, custom villas, and premier commercial spaces across major metropolitan hubs in India.
+            </p>
+            <p style="margin-bottom: 2rem;">
+              Whether you are acquiring a signature family home, expanding your enterprise workspace, or securing a strategic residential plot, our client-first methodology ensures absolute clarity, refined presentation, and an effortless search experience from day one.
+            </p>
+            <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+              <a href="about.html" class="btn btn-secondary">Learn More</a>
+              <a href="services.html" class="btn btn-outline">Our Services</a>
+            </div>
+          </div>
+          <div style="position: relative;">
+            <div style="border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-lg); border: 2px solid var(--color-white);">
+              <img src="assets/images/about-estate.webp" alt="Estate Hub luxury architectural residential project" style="width: 100%; height: 420px; object-fit: cover;">
+            </div>
+            <div style="position: absolute; bottom: -20px; left: -20px; background: var(--color-white); padding: 1.5rem; border-radius: var(--radius-md); box-shadow: var(--shadow-md); border-left: 4px solid var(--color-gold); max-width: 240px;" class="desktop-only">
+              <div style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700; color: var(--color-navy);">100% Curated</div>
+              <div style="font-size: 0.8rem; color: var(--color-body); text-transform: uppercase; font-weight: 600;">Verified Demo Listings</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 4: PROPERTY CATEGORIES ==================== -->
+    <section class="section section-white">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">Property Portfolios</span>
+          <h2 class="section-title">Explore by Property Category</h2>
+          <p class="section-subtitle">Thoughtfully categorized spaces tailored for discerning homeowners, commercial enterprises, and strategic investors.</p>
+        </div>
+
+        <div class="category-grid">
+          <!-- 1. Luxury Apartments -->
+          <div class="category-card">
+            <img class="category-card-img" src="assets/images/luxury-apartment.webp" alt="Luxury Apartments" loading="lazy">
+            <div class="category-card-overlay"></div>
+            <div class="category-card-content">
+              <h3 class="category-card-title">Luxury Apartments</h3>
+              <p class="category-card-desc">Skyline residences, duplexes, and designer homes with bespoke amenities.</p>
+              <a href="residential.html" class="category-card-link">Explore Collection &rarr;</a>
+            </div>
+          </div>
+
+          <!-- 2. Independent Villas -->
+          <div class="category-card">
+            <img class="category-card-img" src="assets/images/modern-villa.webp" alt="Independent Villas" loading="lazy">
+            <div class="category-card-overlay"></div>
+            <div class="category-card-content">
+              <h3 class="category-card-title">Independent Villas</h3>
+              <p class="category-card-desc">Expansive private estates with landscaped lawns, plunge pools, and private decks.</p>
+              <a href="residential.html" class="category-card-link">Explore Collection &rarr;</a>
+            </div>
+          </div>
+
+          <!-- 3. Residential Houses -->
+          <div class="category-card">
+            <img class="category-card-img" src="assets/images/family-house.webp" alt="Residential Houses" loading="lazy">
+            <div class="category-card-overlay"></div>
+            <div class="category-card-content">
+              <h3 class="category-card-title">Residential Houses</h3>
+              <p class="category-card-desc">Graceful family residences within serene, established tree-lined avenues.</p>
+              <a href="residential.html" class="category-card-link">Explore Collection &rarr;</a>
+            </div>
+          </div>
+
+          <!-- 4. Residential Plots -->
+          <div class="category-card">
+            <img class="category-card-img" src="assets/images/residential-plot.webp" alt="Residential Plots" loading="lazy">
+            <div class="category-card-overlay"></div>
+            <div class="category-card-content">
+              <h3 class="category-card-title">Residential Plots</h3>
+              <p class="category-card-desc">Prime freehold parcels inside gated layouts equipped with complete civic infrastructure.</p>
+              <a href="properties.html?category=plots" class="category-card-link">Explore Collection &rarr;</a>
+            </div>
+          </div>
+
+          <!-- 5. Commercial Spaces -->
+          <div class="category-card">
+            <img class="category-card-img" src="assets/images/retail-space.webp" alt="Commercial Spaces" loading="lazy">
+            <div class="category-card-overlay"></div>
+            <div class="category-card-content">
+              <h3 class="category-card-title">Commercial Spaces</h3>
+              <p class="category-card-desc">High-street retail showrooms, boutique studios, and prime business addresses.</p>
+              <a href="commercial.html" class="category-card-link">Explore Collection &rarr;</a>
+            </div>
+          </div>
+
+          <!-- 6. Office Properties -->
+          <div class="category-card">
+            <img class="category-card-img" src="assets/images/office-space.webp" alt="Office Properties" loading="lazy">
+            <div class="category-card-overlay"></div>
+            <div class="category-card-content">
+              <h3 class="category-card-title">Office Properties</h3>
+              <p class="category-card-desc">Grade-A enterprise offices and collaborative co-working facilities for growing firms.</p>
+              <a href="commercial.html" class="category-card-link">Explore Collection &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 5: FEATURED PROPERTIES ==================== -->
+    <section class="section section-cream">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <span class="section-eyebrow">Curated Showcase</span>
+            <h2 class="section-title">Featured Properties</h2>
+            <p class="section-subtitle">Exemplary residential addresses and landmark commercial opportunities.</p>
+          </div>
+          <a href="properties.html" class="btn btn-outline">View All Properties &rarr;</a>
+        </div>
+
+        <div id="homeFeaturedGrid" class="property-grid">
+          <!-- Populated dynamically via script or default fallback -->
+        </div>
+
+        <div class="demo-disclaimer text-center" style="margin-top: 3rem;">
+          <strong>Demo Notice:</strong> All property names, addresses, localities (e.g. Silver Oak Residency, Lakeview Gardens), and pricing figures represent fictional demonstration data.
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 6: WHY CHOOSE ESTATE HUB ==================== -->
+    <section class="section section-white">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">The Estate Hub Difference</span>
+          <h2 class="section-title">Why Choose Estate Hub?</h2>
+          <p class="section-subtitle">We pair an appreciation for timeless architectural elegance with modern property advisory standards.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="m9 11 3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+            </div>
+            <h3 class="feature-title">Curated Property Listings</h3>
+            <p class="feature-desc">Every listing is hand-selected and presented with detailed architectural photographs, authentic floor metrics, and clear spatial layouts.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+            </div>
+            <h3 class="feature-title">Transparent Information</h3>
+            <p class="feature-desc">Clear built-up vs. carpet area statistics, orientation details, furnishing grades, and realistic possession timelines without ambiguity.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <h3 class="feature-title">Personalised Assistance</h3>
+            <p class="feature-desc">Dedicated advisory support tailored to whether you are a first-time homebuyer, commercial tenant, or seasoned real estate investor.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+            <h3 class="feature-title">Property Discovery Made Easy</h3>
+            <p class="feature-desc">Intuitive multi-criteria filtering, local shortlist favourites, interactive lightbox galleries, and responsive design across all devices.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 7: LUXURY LIVING EDITORIAL ==================== -->
+    <section class="section section-dark">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3.5rem; align-items: center;">
+          <div>
+            <span class="section-eyebrow">Editorial Feature</span>
+            <h2 class="section-title" style="color: var(--color-white);">Discover a Better Way to Live.</h2>
+            <p style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem;">
+              Contemporary luxury in India transcends mere square footage. It embodies thoughtful ventilation, natural daylight, organic green transitions, and private retreat pavilions that elevate daily life into a continuous experience of calm.
+            </p>
+            <p style="margin-bottom: 2rem;">
+              From cantilevered balconies overlooking tranquil water bodies to bespoke modular kitchens engineered with imported quartz and concealed ergonomics, our premier residences redefine modern urban tranquility.
+            </p>
+            <div style="display: flex; gap: 1.25rem;">
+              <a href="residential.html" class="btn btn-primary">Explore Residential Homes</a>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <img src="assets/images/living-room.webp" alt="Luxury contemporary living room interior" style="border-radius: var(--radius-sm); height: 260px; width: 100%; object-fit: cover;">
+            <img src="assets/images/swimming-pool.webp" alt="Private luxury pool and architectural deck" style="border-radius: var(--radius-sm); height: 260px; width: 100%; object-fit: cover; margin-top: 1.5rem;">
+            <img src="assets/images/bedroom-interior.webp" alt="Elegant master bedroom suite" style="border-radius: var(--radius-sm); height: 260px; width: 100%; object-fit: cover; margin-top: -1.5rem;">
+            <img src="assets/images/kitchen-interior.webp" alt="High-end modular kitchen" style="border-radius: var(--radius-sm); height: 260px; width: 100%; object-fit: cover;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 8: OUR PROJECTS ==================== -->
+    <section class="section section-white">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <span class="section-eyebrow">Master-Planned Developments</span>
+            <h2 class="section-title">Featured Development Projects</h2>
+            <p class="section-subtitle">Visual highlights of our fictional community masterplans across India.</p>
+          </div>
+          <a href="projects.html" class="btn btn-outline">All Projects &rarr;</a>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <div class="project-card">
+            <div class="project-card-media">
+              <img class="project-card-img" src="assets/images/project-01.webp" alt="The Grand Residences" loading="lazy">
+            </div>
+            <div class="project-card-body">
+              <span class="project-badge">Luxury High-Rise</span>
+              <h3 class="project-card-title">The Grand Residences</h3>
+              <div class="project-location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                Silver Oak Residency, Bengaluru
+              </div>
+              <p class="project-desc">An iconic twin-tower development featuring sky lounges, private elevators, and temperature-controlled lap pools.</p>
+              <a href="projects.html" class="btn btn-outline btn-sm">Explore Project</a>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card">
+            <div class="project-card-media">
+              <img class="project-card-img" src="assets/images/project-02.webp" alt="Greenfield Villas" loading="lazy">
+            </div>
+            <div class="project-card-body">
+              <span class="project-badge">Private Gated Enclave</span>
+              <h3 class="project-card-title">Greenfield Villas</h3>
+              <div class="project-location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                Lakeview Gardens, Hyderabad
+              </div>
+              <p class="project-desc">A boutique collection of 48 bespoke villas surrounded by fruit orchards, private jogging paths, and clubhouse facilities.</p>
+              <a href="projects.html" class="btn btn-outline btn-sm">Explore Project</a>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-card">
+            <div class="project-card-media">
+              <img class="project-card-img" src="assets/images/project-03.webp" alt="The Urban Square" loading="lazy">
+            </div>
+            <div class="project-card-body">
+              <span class="project-badge">Grade-A Commercial</span>
+              <h3 class="project-card-title">The Urban Square</h3>
+              <div class="project-location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                Business District, Gurugram
+              </div>
+              <p class="project-desc">An integrated commercial campus offering sustainable corporate headquarters, retail boulevards, and open-air plazas.</p>
+              <a href="projects.html" class="btn btn-outline btn-sm">Explore Project</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-disclaimer text-center" style="margin-top: 2.5rem;">
+          <strong>Disclaimer:</strong> Project concepts, names, and images represent illustrative demo showcases only. No real development, approval, or construction is represented.
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 9: OUR SERVICES ==================== -->
+    <section class="section section-cream">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">Full-Spectrum Expertise</span>
+          <h2 class="section-title">Our Professional Services</h2>
+          <p class="section-subtitle">Dedicated property advisory solutions designed for buyers, sellers, tenants, and commercial enterprises.</p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            </div>
+            <h3 class="service-title">Buying Assistance</h3>
+            <p class="service-desc">End-to-end guidance from initial locality shortlisting to verified property inspections, documentation review, and handover.</p>
+            <a href="services.html" class="service-link">Learn More &rarr;</a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            </div>
+            <h3 class="service-title">Rental Assistance</h3>
+            <p class="service-desc">Tailored residential and corporate leasing services connecting qualified tenants with well-maintained properties.</p>
+            <a href="services.html" class="service-link">Learn More &rarr;</a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </div>
+            <h3 class="service-title">Property Selling</h3>
+            <p class="service-desc">High-impact architectural visual marketing, qualified buyer matchmaking, and structured transaction advisory.</p>
+            <a href="services.html" class="service-link">Learn More &rarr;</a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            </div>
+            <h3 class="service-title">Property Management</h3>
+            <p class="service-desc">Comprehensive asset oversight including tenant coordination, routine maintenance, and inspection protocols.</p>
+            <a href="services.html" class="service-link">Learn More &rarr;</a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            </div>
+            <h3 class="service-title">Investment Guidance</h3>
+            <p class="service-desc">Strategic portfolio diversification, emerging growth corridor evaluations, and commercial asset assessments.</p>
+            <a href="services.html" class="service-link">Learn More &rarr;</a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+            </div>
+            <h3 class="service-title">Commercial Property Consulting</h3>
+            <p class="service-desc">Corporate office acquisitions, retail showroom placements, and flexible co-working solutions.</p>
+            <a href="services.html" class="service-link">Learn More &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 10: HOW IT WORKS ==================== -->
+    <section class="section section-white">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">Seamless Process</span>
+          <h2 class="section-title">How It Works</h2>
+          <p class="section-subtitle">A straightforward four-step approach designed to make property discovery effortless and transparent.</p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <h3 class="step-title">Explore Properties</h3>
+            <p class="step-desc">Search through thoughtfully curated listings across prime Indian micro-markets with verified floor metrics and photos.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <h3 class="step-title">Shortlist Favourites</h3>
+            <p class="step-desc">Save your preferred villas, apartments, or offices using the one-click heart icon for quick side-by-side comparison.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <h3 class="step-title">Connect With Our Team</h3>
+            <p class="step-desc">Schedule a convenient private viewing or request comprehensive property dossiers via our dedicated advisory desk.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">04</div>
+            <h3 class="step-title">Take the Next Step</h3>
+            <p class="step-desc">Proceed confidently with complete clarity on pricing, possession timelines, legal title checks, and handover formalities.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 11: TESTIMONIALS ==================== -->
+    <section class="section section-cream">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">Client Experiences</span>
+          <h2 class="section-title">What Our Clients Say</h2>
+          <p class="section-subtitle">Illustrative demo feedback demonstrating the quality of our property discovery experience.</p>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <blockquote class="testimonial-quote">
+              "Estate Hub made shortlisting our family home in Silver Oak Residency simple and transparent. The architectural imagery and floor specifications were accurate to the last detail."
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar">AK</div>
+              <div>
+                <div class="author-name">Arun Kumar</div>
+                <div class="author-role">Residential Homeowner (Demo)</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <blockquote class="testimonial-quote">
+              "Finding a prime high-street showroom in Mumbai usually takes months. With Estate Hub's commercial filtering and swift team response, we secured our flagship store seamlessly."
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar">PS</div>
+              <div>
+                <div class="author-name">Pooja Sharma</div>
+                <div class="author-role">Retail Business Founder (Demo)</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <blockquote class="testimonial-quote">
+              "The clarity regarding carpet area, possession timelines, and legal title checks was truly refreshing. An exceptionally professional real estate marketplace experience."
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar">NM</div>
+              <div>
+                <div class="author-name">Nitin Mehta</div>
+                <div class="author-role">Villa Owner (Demo)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-disclaimer text-center" style="margin-top: 2rem;">
+          <strong>Demo Notice:</strong> Testimonials are illustrative demo reviews created for demonstration purposes and do not represent verified real customer statements.
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 12: LATEST INSIGHTS ==================== -->
+    <section class="section section-white">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <span class="section-eyebrow">Market Knowledge</span>
+            <h2 class="section-title">Latest Real Estate Insights</h2>
+            <p class="section-subtitle">Helpful perspectives on buying, investing, and understanding real estate trends in India.</p>
+          </div>
+          <a href="blog.html" class="btn btn-outline">Read All Articles &rarr;</a>
+        </div>
+
+        <div class="blog-grid">
+          <article class="blog-card">
+            <div class="blog-card-media">
+              <img class="blog-card-img" src="assets/images/blog-01.webp" alt="Things to Consider Before Buying Your First Home" loading="lazy">
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <span class="blog-category">Buying Guide</span>
+                <span>•</span>
+                <time datetime="2026-10-15">Oct 15, 2026</time>
+              </div>
+              <h3 class="blog-card-title">
+                <a href="blog.html">Things to Consider Before Buying Your First Home</a>
+              </h3>
+              <p class="blog-card-excerpt">
+                From evaluating carpet vs. super built-up ratios to checking encumbrance certificates and commuting corridors, here is your essential first-time buyer checklist.
+              </p>
+              <a href="blog.html" class="blog-card-link">Read Full Guide &rarr;</a>
+            </div>
+          </article>
+
+          <article class="blog-card">
+            <div class="blog-card-media">
+              <img class="blog-card-img" src="assets/images/blog-02.webp" alt="Understanding Residential Property Investment" loading="lazy">
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <span class="blog-category">Property Investment</span>
+                <span>•</span>
+                <time datetime="2026-10-08">Oct 08, 2026</time>
+              </div>
+              <h3 class="blog-card-title">
+                <a href="blog.html">Understanding Residential Property Investment</a>
+              </h3>
+              <p class="blog-card-excerpt">
+                A structured examination of appreciation fundamentals, infrastructure-driven micro-markets, and sustainable rental yields in metropolitan India.
+              </p>
+              <a href="blog.html" class="blog-card-link">Read Full Guide &rarr;</a>
+            </div>
+          </article>
+
+          <article class="blog-card">
+            <div class="blog-card-media">
+              <img class="blog-card-img" src="assets/images/blog-03.webp" alt="How to Choose the Right Neighbourhood" loading="lazy">
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <span class="blog-category">Lifestyle</span>
+                <span>•</span>
+                <time datetime="2026-09-29">Sep 29, 2026</time>
+              </div>
+              <h3 class="blog-card-title">
+                <a href="blog.html">How to Choose the Right Neighbourhood</a>
+              </h3>
+              <p class="blog-card-excerpt">
+                Key community indicators including social infrastructure, healthcare proximity, green open parks, and peaceful residential zoning that enrich long-term well-being.
+              </p>
+              <a href="blog.html" class="blog-card-link">Read Full Guide &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 13: FINAL CTA ==================== -->
+    <section class="section section-navy">
+      <div class="container text-center">
+        <span class="section-eyebrow" style="color: var(--color-gold-light);">Connect With Estate Hub</span>
+        <h2 class="section-title" style="color: var(--color-white); max-width: 780px; margin-left: auto; margin-right: auto;">
+          Ready to Find Your Next Property?
+        </h2>
+        <p style="font-size: 1.15rem; color: #C3CEDA; max-width: 640px; margin: 0 auto 2.5rem; line-height: 1.7;">
+          Let Estate Hub help you explore opportunities that match your lifestyle and goals. Discover handpicked residential and commercial collections today.
+        </p>
+        <div style="display: flex; gap: 1.25rem; justify-content: center; flex-wrap: wrap;">
+          <a href="properties.html" class="btn btn-primary btn-lg">Browse Properties</a>
+          <a href="contact.html" class="btn btn-outline-white btn-lg">Contact Our Team</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== SECTION 14: FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-title">ESTATE HUB</div>
+          <div class="footer-tagline">Find Your Place. Build Your Future.</div>
+          <p class="footer-desc">
+            Estate Hub is a premier real estate discovery showcase presenting luxury apartments, independent villas, family residences, plots, and commercial properties across India.
+          </p>
+          <div class="demo-disclaimer" style="margin-top: 1rem; color: #E0C794; background: rgba(198, 161, 91, 0.08);">
+            Demonstration website for business presentation. All listings, data, and contacts are fictional.
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="properties.html">All Properties</a></li>
+            <li><a href="residential.html">Residential Collection</a></li>
+            <li><a href="commercial.html">Commercial Properties</a></li>
+            <li><a href="projects.html">Development Projects</a></li>
+            <li><a href="services.html">Services & Advisory</a></li>
+            <li><a href="blog.html">Insights & Blog</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Property Types</h4>
+          <ul class="footer-links">
+            <li><a href="properties.html?category=apartments">Luxury Apartments</a></li>
+            <li><a href="properties.html?category=villas">Independent Villas</a></li>
+            <li><a href="properties.html?category=houses">Residential Houses</a></li>
+            <li><a href="properties.html?category=plots">Residential Plots</a></li>
+            <li><a href="properties.html?category=commercial">Office Spaces</a></li>
+            <li><a href="properties.html?category=commercial">Retail Showrooms</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Demo Contact</h4>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Estate Hub Demo Office, Property Avenue, Sample Business District, Demo City, India – 000000</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>+91 00000 00000</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>hello@example.com</span>
+          </div>
+
+          <h5 style="color: var(--color-white); font-size: 0.85rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">Newsletter (Demo)</h5>
+          <form class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="Your email address" required>
+            <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 ESTATE HUB. All rights reserved. Fictional business showcase.</div>
+        <div class="footer-bottom-links">
+          <a href="about.html">Privacy Notice (Demo)</a>
+          <a href="about.html">Terms of Service (Demo)</a>
+          <a href="contact.html">Support</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODAL: LIST YOUR PROPERTY ==================== -->
+  <div id="listPropertyModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="listPropertyTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="listPropertyTitle" class="modal-title">List Your Property with Estate Hub</h3>
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 1.25rem;">
+          Submit your property specifications to our advisory team for a demo appraisal and curated cataloging.
+        </p>
+
+        <form id="listPropertyForm">
+          <div class="modal-form-grid">
+            <div class="form-group">
+              <label class="form-label" for="ownerName">Owner Full Name *</label>
+              <input type="text" id="ownerName" class="form-input" required placeholder="e.g. Ramesh Patel">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="ownerPhone">Phone Number *</label>
+              <input type="tel" id="ownerPhone" class="form-input" required placeholder="+91 98765 43210" pattern="[0-9+ \-]{8,15}">
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="ownerEmail">Email Address *</label>
+              <input type="email" id="ownerEmail" class="form-input" required placeholder="name@example.com">
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="propTitleInput">Property Title *</label>
+              <input type="text" id="propTitleInput" class="form-input" required placeholder="e.g. 3-BHK Luxury Sun-Deck Apartment">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propCategoryInput">Property Category *</label>
+              <select id="propCategoryInput" class="form-select" required>
+                <option value="apartments">Luxury Apartment</option>
+                <option value="villas">Independent Villa</option>
+                <option value="houses">Residential House</option>
+                <option value="plots">Residential Plot</option>
+                <option value="commercial">Commercial Space</option>
+                <option value="office">Office Property</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propLocationInput">Locality & City *</label>
+              <input type="text" id="propLocationInput" class="form-input" required placeholder="e.g. Silver Oak, Bengaluru">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propPriceInput">Expected Price (INR) *</label>
+              <input type="text" id="propPriceInput" class="form-input" required placeholder="e.g. ₹1.25 Crore">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propAreaInput">Carpet / Built-up Area *</label>
+              <input type="text" id="propAreaInput" class="form-input" required placeholder="e.g. 1850 sq.ft.">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propBedroomsInput">Bedrooms</label>
+              <select id="propBedroomsInput" class="form-select">
+                <option value="0">N/A (Plot/Commercial)</option>
+                <option value="1">1 BHK</option>
+                <option value="2">2 BHK</option>
+                <option value="3" selected>3 BHK</option>
+                <option value="4">4 BHK</option>
+                <option value="5">5+ BHK</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propBathroomsInput">Bathrooms</label>
+              <select id="propBathroomsInput" class="form-select">
+                <option value="1">1 Bathroom</option>
+                <option value="2">2 Bathrooms</option>
+                <option value="3" selected>3 Bathrooms</option>
+                <option value="4">4+ Bathrooms</option>
+              </select>
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="propDescInput">Property Description</label>
+              <textarea id="propDescInput" class="form-input" rows="3" placeholder="Provide key highlights, floor level, parking, orientation, amenities..."></textarea>
+            </div>
+          </div>
+
+          <div id="listPropertyAlert" class="demo-alert"></div>
+
+          <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 1rem;">
+            <button type="button" class="btn btn-outline btn-modal-close">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit Demo Listing</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: FAVOURITES ==================== -->
+  <div id="favModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="favModalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="favModalTitle" class="modal-title">Your Shortlisted Favourites</h3>
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" id="favModalList">
+        <!-- Rendered by script -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- Scripts -->
+  <script src="assets/js/properties.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script>
+    // Specific Homepage Logic
+    let currentSearchPurpose = "all";
+
+    function setSearchPurpose(purpose, btn) {
+      currentSearchPurpose = purpose;
+      document.querySelectorAll(".search-tab").forEach(tab => tab.classList.remove("active"));
+      btn.classList.add("active");
+    }
+
+    function handleHeroSearch(e) {
+      e.preventDefault();
+      const loc = document.getElementById("searchLocation").value;
+      const cat = document.getElementById("searchCategory").value;
+      const bud = document.getElementById("searchBudget").value;
+      const bed = document.getElementById("searchBedrooms").value;
+
+      const params = new URLSearchParams();
+      if (currentSearchPurpose !== "all") params.set("purpose", currentSearchPurpose);
+      if (loc !== "all") params.set("location", loc);
+      if (cat !== "all") params.set("category", cat);
+      if (bud !== "all") params.set("maxBudget", bud);
+      if (bed !== "all") params.set("bedrooms", bed);
+
+      window.location.href = `properties.html?${params.toString()}`;
+    }
+
+    // Render Featured 6 items
+    document.addEventListener("DOMContentLoaded", () => {
+      const featuredContainer = document.getElementById("homeFeaturedGrid");
+      if (featuredContainer && typeof propertiesData !== "undefined") {
+        const featured = propertiesData.slice(0, 6);
+        featuredContainer.innerHTML = featured.map(p => createPropertyCardHTML(p)).join("");
+        updateFavouriteButtonsUI();
+      }
+    });
+  </script>
+</body>
+</html>

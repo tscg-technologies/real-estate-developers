@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Details | ESTATE HUB</title>
+  <meta name="description" content="View comprehensive property details, high-resolution architectural gallery, key amenities, built-up specifications, and enquire with dedicated advisors.">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" aria-label="Estate Hub Homepage">
+        <div class="brand-mark">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">ESTATE HUB</span>
+          <span class="brand-tagline">Find Your Place. Build Your Future.</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+          <li class="nav-item has-dropdown">
+            <a href="properties.html" class="nav-link active">
+              Properties
+              <svg class="nav-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </a>
+            <div class="nav-dropdown">
+              <a href="properties.html" class="dropdown-link">All Properties</a>
+              <a href="residential.html" class="dropdown-link">Residential Properties</a>
+              <a href="commercial.html" class="dropdown-link">Commercial Properties</a>
+            </div>
+          </li>
+          <li class="nav-item"><a href="projects.html" class="nav-link">Projects</a></li>
+          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="fav-header-btn" aria-label="View Favourites" title="Saved Favourites">
+          <svg viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span class="fav-badge fav-count-badge" style="display: none;">0</span>
+        </button>
+        <button class="btn btn-primary btn-sm" onclick="openModal('listPropertyModal')">List Your Property</button>
+        <button class="menu-toggle" aria-label="Toggle Navigation Menu">
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Graceful Not Found State -->
+    <div id="propertyNotFound" class="section section-cream" style="display: none; padding: 6rem 0;">
+      <div class="container text-center" style="max-width: 600px;">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="1.5" style="margin-bottom: 1.5rem;">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Property Not Found</h2>
+        <p class="text-muted" style="margin-bottom: 2rem;">
+          The property ID in the URL is missing or does not match our current demonstration catalog. Please browse our active collections.
+        </p>
+        <a href="properties.html" class="btn btn-primary">Browse All Properties</a>
+      </div>
+    </div>
+
+    <!-- Active Property Details Container -->
+    <div id="propertyDetailsContent" style="display: none;">
+      <!-- Breadcrumb Bar -->
+      <section style="background-color: var(--color-white); border-bottom: 1px solid var(--color-border); padding: 1.25rem 0;">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-bottom: 0;">
+            <a href="index.html" style="color: var(--color-body);">Home</a>
+            <span style="color: var(--color-body-light);">&rsaquo;</span>
+            <a href="properties.html" style="color: var(--color-body);">Properties</a>
+            <span style="color: var(--color-body-light);">&rsaquo;</span>
+            <span id="breadcrumbCurrent" style="color: var(--color-gold); font-weight: 600;">Property Details</span>
+          </nav>
+        </div>
+      </section>
+
+      <!-- Property Title and Highlights Banner -->
+      <section style="background-color: var(--color-cream); padding: 2.5rem 0 1.5rem;">
+        <div class="container">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem;">
+            <div>
+              <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem; align-items: center;">
+                <span id="propStatusBadge" class="badge badge-success">Ready to Move</span>
+                <span id="propTypeBadge" class="badge badge-gold">Apartment</span>
+              </div>
+              <h1 id="propTitle" style="font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 0.5rem;">Property Title</h1>
+              <p id="propLocality" style="color: var(--color-body); font-size: 1rem; display: flex; align-items: center; gap: 0.4rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                Locality, City
+              </p>
+            </div>
+
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--color-body-light); font-weight: 600; letter-spacing: 0.05em;">Indicative Price</div>
+              <div id="propPrice" style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 700; color: var(--color-navy); margin-bottom: 0.75rem;">₹0.00</div>
+              <a href="#enquiryFormSection" class="btn btn-primary btn-sm">Enquire Now</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Property Visual Gallery -->
+      <section class="section section-cream" style="padding-top: 1rem; padding-bottom: 3rem;">
+        <div class="container">
+          <div class="property-gallery-grid">
+            <div id="galleryMain" class="gallery-main" title="Click to view full lightbox">
+              <img id="galleryMainImg" src="assets/images/hero-real-estate.webp" alt="Featured view" onerror="this.src='assets/images/hero-real-estate.webp'">
+              <div class="gallery-overlay-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"></path>
+                </svg>
+                <span>View Full Gallery (Click to Enlarge)</span>
+              </div>
+            </div>
+
+            <div id="galleryThumbs" class="gallery-thumbs">
+              <!-- Rendered via property-details.js -->
+            </div>
+          </div>
+
+          <!-- Main Details Layout (Two columns) -->
+          <div class="details-layout">
+            <!-- Left Column: Specs, Description, Features, Info -->
+            <div>
+              <!-- Specs Quick Bar -->
+              <div class="details-specs-bar">
+                <div>
+                  <div class="spec-box-label">Bedrooms</div>
+                  <div id="specBeds" class="spec-box-val">3 BHK</div>
+                </div>
+                <div>
+                  <div class="spec-box-label">Bathrooms</div>
+                  <div id="specBaths" class="spec-box-val">3 Baths</div>
+                </div>
+                <div>
+                  <div class="spec-box-label">Super Area</div>
+                  <div id="specArea" class="spec-box-val">1,850 sq.ft</div>
+                </div>
+                <div>
+                  <div class="spec-box-label">Transaction</div>
+                  <div id="specPurpose" class="spec-box-val">For Sale</div>
+                </div>
+              </div>
+
+              <!-- Detailed Property Description -->
+              <div class="details-card">
+                <h3 style="margin-bottom: 1.25rem;">Property Overview & Architecture</h3>
+                <p id="propDescription" style="font-size: 1.05rem; line-height: 1.8; color: var(--color-body);">
+                  Description text...
+                </p>
+              </div>
+
+              <!-- Key Features & Amenities -->
+              <div class="details-card">
+                <h3 style="margin-bottom: 1.5rem;">Key Features & Amenities</h3>
+                <div id="propFeaturesList" class="features-list">
+                  <!-- Rendered via JS -->
+                </div>
+              </div>
+
+              <!-- Property Specifications Table -->
+              <div class="details-card">
+                <h3 style="margin-bottom: 1.25rem;">Property Information</h3>
+                <table id="propInfoTable" class="info-table">
+                  <!-- Rendered via JS -->
+                </table>
+              </div>
+            </div>
+
+            <!-- Right Column: Sticky Contact Advisor Panel -->
+            <div>
+              <div class="agent-card" id="enquiryFormSection">
+                <div class="agent-profile">
+                  <div id="agentInitials" class="agent-avatar">EH</div>
+                  <div>
+                    <h4 id="agentName" style="font-size: 1.15rem; margin-bottom: 0.2rem;">Property Advisor</h4>
+                    <div id="agentTitle" style="font-size: 0.85rem; color: var(--color-gold); font-weight: 600;">Senior Property Consultant</div>
+                  </div>
+                </div>
+
+                <div style="margin-bottom: 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--color-body);">
+                  Have questions about this residence? Connect directly with our dedicated advisory desk to verify floor metrics or book a private walk-through.
+                </div>
+
+                <div style="background: var(--color-cream); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem; border: 1px solid var(--color-border); font-size: 0.88rem;">
+                  <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    <strong>+91 00000 00000</strong> (Demo)
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    <span>hello@example.com</span>
+                  </div>
+                </div>
+
+                <!-- Advisor Enquiry Form -->
+                <form id="propertyEnquiryForm">
+                  <div class="form-group" style="margin-bottom: 0.85rem;">
+                    <label class="form-label" for="enqName">Your Name *</label>
+                    <input type="text" id="enqName" class="form-input" required placeholder="e.g. Anand Kumar">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 0.85rem;">
+                    <label class="form-label" for="enqEmail">Email *</label>
+                    <input type="email" id="enqEmail" class="form-input" required placeholder="name@example.com">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 0.85rem;">
+                    <label class="form-label" for="enqPhone">Phone *</label>
+                    <input type="tel" id="enqPhone" class="form-input" required placeholder="+91 98765 43210">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 1.25rem;">
+                    <label class="form-label" for="enqMessage">Message</label>
+                    <textarea id="enqMessage" class="form-input" rows="3" placeholder="I would like to schedule a viewing or request the detailed property dossier..."></textarea>
+                  </div>
+
+                  <div id="propertyEnquiryAlert" class="demo-alert"></div>
+
+                  <button type="submit" class="btn btn-primary" style="width: 100%;">Send Demo Enquiry</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-disclaimer text-center" style="margin-top: 3.5rem;">
+            <strong>Demo Notice:</strong> All property details, amenities, built-up specifications, and pricing metrics are illustrative demonstration data.
+          </div>
+        </div>
+      </section>
+
+      <!-- Similar Properties Carousel / Grid -->
+      <section class="section section-white">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-eyebrow">Recommendations</span>
+            <h2 class="section-title">Similar Properties You May Like</h2>
+            <p class="section-subtitle">Handpicked residential and commercial listings within related micro-markets.</p>
+          </div>
+
+          <div id="relatedPropertiesGrid" class="property-grid">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ==================== LIGHTBOX COMPONENT ==================== -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image gallery lightbox">
+    <div class="lightbox-content">
+      <button id="lightboxClose" class="lightbox-close" aria-label="Close Lightbox">&times;</button>
+      <button id="lightboxPrev" class="lightbox-nav lightbox-prev" aria-label="Previous Image">&#10094;</button>
+      <img id="lightboxImg" class="lightbox-img" src="" alt="Full size photograph">
+      <button id="lightboxNext" class="lightbox-nav lightbox-next" aria-label="Next Image">&#10095;</button>
+      <div id="lightboxCounter" style="color: var(--color-white); margin-top: 1rem; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.05em;"></div>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-title">ESTATE HUB</div>
+          <div class="footer-tagline">Find Your Place. Build Your Future.</div>
+          <p class="footer-desc">
+            Estate Hub is a premier real estate discovery showcase presenting luxury apartments, independent villas, family residences, plots, and commercial properties across India.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="properties.html">All Properties</a></li>
+            <li><a href="residential.html">Residential Collection</a></li>
+            <li><a href="commercial.html">Commercial Properties</a></li>
+            <li><a href="projects.html">Development Projects</a></li>
+            <li><a href="services.html">Services & Advisory</a></li>
+            <li><a href="blog.html">Insights & Blog</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Property Types</h4>
+          <ul class="footer-links">
+            <li><a href="properties.html?category=apartments">Luxury Apartments</a></li>
+            <li><a href="properties.html?category=villas">Independent Villas</a></li>
+            <li><a href="properties.html?category=houses">Residential Houses</a></li>
+            <li><a href="properties.html?category=plots">Residential Plots</a></li>
+            <li><a href="properties.html?category=commercial">Office Spaces</a></li>
+            <li><a href="properties.html?category=commercial">Retail Showrooms</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Demo Contact</h4>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Estate Hub Demo Office, Property Avenue, Sample Business District, Demo City, India – 000000</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>+91 00000 00000</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>hello@example.com</span>
+          </div>
+
+          <h5 style="color: var(--color-white); font-size: 0.85rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">Newsletter (Demo)</h5>
+          <form class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="Your email address" required>
+            <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 ESTATE HUB. All rights reserved. Fictional business showcase.</div>
+        <div class="footer-bottom-links">
+          <a href="about.html">Privacy Notice (Demo)</a>
+          <a href="about.html">Terms of Service (Demo)</a>
+          <a href="contact.html">Support</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODALS ==================== -->
+  <div id="listPropertyModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="listPropertyTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="listPropertyTitle" class="modal-title">List Your Property with Estate Hub</h3>
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="listPropertyForm">
+          <div class="modal-form-grid">
+            <div class="form-group">
+              <label class="form-label" for="ownerName">Owner Full Name *</label>
+              <input type="text" id="ownerName" class="form-input" required placeholder="e.g. Ramesh Patel">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="ownerPhone">Phone Number *</label>
+              <input type="tel" id="ownerPhone" class="form-input" required placeholder="+91 98765 43210">
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="ownerEmail">Email Address *</label>
+              <input type="email" id="ownerEmail" class="form-input" required placeholder="name@example.com">
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="propTitleInput">Property Title *</label>
+              <input type="text" id="propTitleInput" class="form-input" required placeholder="e.g. 3-BHK Luxury Sun-Deck Apartment">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propCategoryInput">Property Category *</label>
+              <select id="propCategoryInput" class="form-select" required>
+                <option value="apartments">Luxury Apartment</option>
+                <option value="villas">Independent Villa</option>
+                <option value="houses">Residential House</option>
+                <option value="plots">Residential Plot</option>
+                <option value="commercial">Commercial Space</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propLocationInput">Locality & City *</label>
+              <input type="text" id="propLocationInput" class="form-input" required placeholder="e.g. Silver Oak, Bengaluru">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propPriceInput">Expected Price (INR) *</label>
+              <input type="text" id="propPriceInput" class="form-input" required placeholder="e.g. ₹1.25 Crore">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propAreaInput">Carpet / Built-up Area *</label>
+              <input type="text" id="propAreaInput" class="form-input" required placeholder="e.g. 1850 sq.ft.">
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="propDescInput">Property Details</label>
+              <textarea id="propDescInput" class="form-input" rows="3" placeholder="Provide key highlights..."></textarea>
+            </div>
+          </div>
+          <div id="listPropertyAlert" class="demo-alert"></div>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 1rem;">
+            <button type="button" class="btn btn-outline btn-modal-close">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit Demo Listing</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="favModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="favModalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="favModalTitle" class="modal-title">Your Shortlisted Favourites</h3>
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" id="favModalList"></div>
+    </div>
+  </div>
+
+  <button class="back-to-top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <script src="assets/js/properties.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/property-details.js"></script>
+</body>
+</html>

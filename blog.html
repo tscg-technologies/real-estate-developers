@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real Estate Insights & Blog | ESTATE HUB</title>
+  <meta name="description" content="Explore expert home buying guides, residential investment fundamentals, architecture insights, and neighbourhood selection tips across Indian real estate.">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" aria-label="Estate Hub Homepage">
+        <div class="brand-mark">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">ESTATE HUB</span>
+          <span class="brand-tagline">Find Your Place. Build Your Future.</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+          <li class="nav-item has-dropdown">
+            <a href="properties.html" class="nav-link">
+              Properties
+              <svg class="nav-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </a>
+            <div class="nav-dropdown">
+              <a href="properties.html" class="dropdown-link">All Properties</a>
+              <a href="residential.html" class="dropdown-link">Residential Properties</a>
+              <a href="commercial.html" class="dropdown-link">Commercial Properties</a>
+            </div>
+          </li>
+          <li class="nav-item"><a href="projects.html" class="nav-link">Projects</a></li>
+          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link active">Blog</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="fav-header-btn" aria-label="View Favourites" title="Saved Favourites">
+          <svg viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span class="fav-badge fav-count-badge" style="display: none;">0</span>
+        </button>
+        <button class="btn btn-primary btn-sm" onclick="openModal('listPropertyModal')">List Your Property</button>
+        <button class="menu-toggle" aria-label="Toggle Navigation Menu">
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==================== HERO ==================== -->
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span>&rsaquo;</span>
+          <span>Blog & Insights</span>
+        </nav>
+        <h1 class="page-hero-title">Real Estate Insights</h1>
+        <p class="page-hero-subtitle">
+          Perspectives on buying, home design, investment strategies, and urban living across India.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== BLOG MAIN LAYOUT (Articles + Sidebar) ==================== -->
+    <section class="section section-cream">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: 2.2fr 1fr; gap: 3rem;">
+          <!-- Left: Blog Articles Grid -->
+          <div>
+            <div id="articlesContainer" class="blog-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+              <!-- Article 1 -->
+              <article class="blog-card" data-category="buying-guide">
+                <div class="blog-card-media">
+                  <img class="blog-card-img" src="assets/images/blog-01.webp" alt="Things to Consider Before Buying Your First Home" loading="lazy">
+                </div>
+                <div class="blog-card-body">
+                  <div class="blog-card-meta">
+                    <span class="blog-category">Buying Guide</span>
+                    <span>•</span>
+                    <time datetime="2026-10-15">Oct 15, 2026</time>
+                  </div>
+                  <h3 class="blog-card-title">Things to Consider Before Buying Your First Home</h3>
+                  <p class="blog-card-excerpt">
+                    From calculating the true difference between carpet and super built-up area to verifying occupancy certificates and property tax receipts, here is a practical roadmap for first-time buyers.
+                  </p>
+                  <a href="#articleReaderModal" onclick="readArticle(1)" class="blog-card-link">Read Full Article &rarr;</a>
+                </div>
+              </article>
+
+              <!-- Article 2 -->
+              <article class="blog-card" data-category="investment">
+                <div class="blog-card-media">
+                  <img class="blog-card-img" src="assets/images/blog-02.webp" alt="Understanding Residential Property Investment" loading="lazy">
+                </div>
+                <div class="blog-card-body">
+                  <div class="blog-card-meta">
+                    <span class="blog-category">Property Investment</span>
+                    <span>•</span>
+                    <time datetime="2026-10-08">Oct 08, 2026</time>
+                  </div>
+                  <h3 class="blog-card-title">Understanding Residential Property Investment</h3>
+                  <p class="blog-card-excerpt">
+                    An in-depth guide to evaluating capital appreciation drivers, upcoming metro infrastructure expansions, and realistic rental yield expectations in metropolitan hubs.
+                  </p>
+                  <a href="#articleReaderModal" onclick="readArticle(2)" class="blog-card-link">Read Full Article &rarr;</a>
+                </div>
+              </article>
+
+              <!-- Article 3 -->
+              <article class="blog-card" data-category="lifestyle">
+                <div class="blog-card-media">
+                  <img class="blog-card-img" src="assets/images/blog-03.webp" alt="How to Choose the Right Neighbourhood" loading="lazy">
+                </div>
+                <div class="blog-card-body">
+                  <div class="blog-card-meta">
+                    <span class="blog-category">Lifestyle</span>
+                    <span>•</span>
+                    <time datetime="2026-09-29">Sep 29, 2026</time>
+                  </div>
+                  <h3 class="blog-card-title">How to Choose the Right Neighbourhood</h3>
+                  <p class="blog-card-excerpt">
+                    Why social infrastructure, green spaces, noise zoning, and pedestrian walkways are just as crucial to your family's daily happiness as interior square footage.
+                  </p>
+                  <a href="#articleReaderModal" onclick="readArticle(3)" class="blog-card-link">Read Full Article &rarr;</a>
+                </div>
+              </article>
+
+              <!-- Article 4 -->
+              <article class="blog-card" data-category="selling-guide">
+                <div class="blog-card-media">
+                  <img class="blog-card-img" src="assets/images/living-room.webp" alt="Staging Your Home for Maximum Buyer Appeal" loading="lazy">
+                </div>
+                <div class="blog-card-body">
+                  <div class="blog-card-meta">
+                    <span class="blog-category">Selling Guide</span>
+                    <span>•</span>
+                    <time datetime="2026-09-18">Sep 18, 2026</time>
+                  </div>
+                  <h3 class="blog-card-title">Staging Your Home for Maximum Buyer Appeal</h3>
+                  <p class="blog-card-excerpt">
+                    Simple architectural enhancements, daylight maximization, and minimalist de-cluttering tips that help buyers envision themselves immediately within your residence.
+                  </p>
+                  <a href="#articleReaderModal" onclick="readArticle(4)" class="blog-card-link">Read Full Article &rarr;</a>
+                </div>
+              </article>
+
+              <!-- Article 5 -->
+              <article class="blog-card" data-category="home-design">
+                <div class="blog-card-media">
+                  <img class="blog-card-img" src="assets/images/kitchen-interior.webp" alt="Modern Kitchen Design Trends for Indian Cooking" loading="lazy">
+                </div>
+                <div class="blog-card-body">
+                  <div class="blog-card-meta">
+                    <span class="blog-category">Home Design</span>
+                    <span>•</span>
+                    <time datetime="2026-09-05">Sep 05, 2026</time>
+                  </div>
+                  <h3 class="blog-card-title">Modern Kitchen Design Trends for Indian Cooking</h3>
+                  <p class="blog-card-excerpt">
+                    Balancing sleek modular European aesthetics with heavy-duty suction chimneys, heat-resistant quartz countertops, and dedicated spice pull-outs.
+                  </p>
+                  <a href="#articleReaderModal" onclick="readArticle(5)" class="blog-card-link">Read Full Article &rarr;</a>
+                </div>
+              </article>
+
+              <!-- Article 6 -->
+              <article class="blog-card" data-category="market-knowledge">
+                <div class="blog-card-media">
+                  <img class="blog-card-img" src="assets/images/office-space.webp" alt="The Evolution of Hybrid Commercial Workspaces" loading="lazy">
+                </div>
+                <div class="blog-card-body">
+                  <div class="blog-card-meta">
+                    <span class="blog-category">Market Knowledge</span>
+                    <span>•</span>
+                    <time datetime="2026-08-22">Aug 22, 2026</time>
+                  </div>
+                  <h3 class="blog-card-title">The Evolution of Hybrid Commercial Workspaces</h3>
+                  <p class="blog-card-excerpt">
+                    How leading Indian enterprises and startups are balancing dedicated private office floors with flexible collaborative lounges and acoustic pods.
+                  </p>
+                  <a href="#articleReaderModal" onclick="readArticle(6)" class="blog-card-link">Read Full Article &rarr;</a>
+                </div>
+              </article>
+            </div>
+
+            <div class="demo-disclaimer text-center" style="margin-top: 3.5rem;">
+              <strong>Editorial Disclaimer:</strong> All articles and summaries represent educational demo content created for web design presentation. No financial advice or real-market yield guarantees are made.
+            </div>
+          </div>
+
+          <!-- Right: Sidebar -->
+          <aside>
+            <!-- Search Widget -->
+            <div style="background: var(--color-white); padding: 1.75rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); margin-bottom: 2rem; box-shadow: var(--shadow-sm);">
+              <h4 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--color-primary);">Search Articles</h4>
+              <div style="display: flex; gap: 0.5rem;">
+                <input type="text" id="blogSearchInput" class="form-input" placeholder="Keyword..." oninput="handleBlogSearch()">
+              </div>
+            </div>
+
+            <!-- Categories Widget -->
+            <div style="background: var(--color-white); padding: 1.75rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); margin-bottom: 2rem; box-shadow: var(--shadow-sm);">
+              <h4 style="font-size: 1.1rem; margin-bottom: 1.25rem; color: var(--color-primary);">Categories</h4>
+              <ul style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.92rem;">
+                <li><a href="javascript:void(0)" onclick="filterBlogCategory('all')" style="display: flex; justify-content: space-between; color: var(--color-primary);"><span>All Articles</span> <span>(6)</span></a></li>
+                <li><a href="javascript:void(0)" onclick="filterBlogCategory('buying-guide')" style="display: flex; justify-content: space-between; color: var(--color-body);"><span>Buying Guide</span> <span>(1)</span></a></li>
+                <li><a href="javascript:void(0)" onclick="filterBlogCategory('selling-guide')" style="display: flex; justify-content: space-between; color: var(--color-body);"><span>Selling Guide</span> <span>(1)</span></a></li>
+                <li><a href="javascript:void(0)" onclick="filterBlogCategory('home-design')" style="display: flex; justify-content: space-between; color: var(--color-body);"><span>Home Design</span> <span>(1)</span></a></li>
+                <li><a href="javascript:void(0)" onclick="filterBlogCategory('investment')" style="display: flex; justify-content: space-between; color: var(--color-body);"><span>Property Investment</span> <span>(1)</span></a></li>
+                <li><a href="javascript:void(0)" onclick="filterBlogCategory('market-knowledge')" style="display: flex; justify-content: space-between; color: var(--color-body);"><span>Market Knowledge</span> <span>(1)</span></a></li>
+                <li><a href="javascript:void(0)" onclick="filterBlogCategory('lifestyle')" style="display: flex; justify-content: space-between; color: var(--color-body);"><span>Lifestyle</span> <span>(1)</span></a></li>
+              </ul>
+            </div>
+
+            <!-- Recent Articles Widget -->
+            <div style="background: var(--color-white); padding: 1.75rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);">
+              <h4 style="font-size: 1.1rem; margin-bottom: 1.25rem; color: var(--color-primary);">Recent Articles</h4>
+              <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+                <div style="display: flex; gap: 0.85rem; align-items: center;">
+                  <img src="assets/images/blog-01.webp" alt="Thumb" style="width: 65px; height: 50px; object-fit: cover; border-radius: var(--radius-sm);">
+                  <div>
+                    <a href="javascript:void(0)" onclick="readArticle(1)" style="font-size: 0.85rem; font-weight: 600; color: var(--color-primary); line-height: 1.3; display: block; margin-bottom: 0.2rem;">Things to Consider Before Buying</a>
+                    <span style="font-size: 0.75rem; color: var(--color-body-light);">Oct 15, 2026</span>
+                  </div>
+                </div>
+
+                <div style="display: flex; gap: 0.85rem; align-items: center;">
+                  <img src="assets/images/blog-02.webp" alt="Thumb" style="width: 65px; height: 50px; object-fit: cover; border-radius: var(--radius-sm);">
+                  <div>
+                    <a href="javascript:void(0)" onclick="readArticle(2)" style="font-size: 0.85rem; font-weight: 600; color: var(--color-primary); line-height: 1.3; display: block; margin-bottom: 0.2rem;">Residential Property Investment</a>
+                    <span style="font-size: 0.75rem; color: var(--color-body-light);">Oct 08, 2026</span>
+                  </div>
+                </div>
+
+                <div style="display: flex; gap: 0.85rem; align-items: center;">
+                  <img src="assets/images/blog-03.webp" alt="Thumb" style="width: 65px; height: 50px; object-fit: cover; border-radius: var(--radius-sm);">
+                  <div>
+                    <a href="javascript:void(0)" onclick="readArticle(3)" style="font-size: 0.85rem; font-weight: 600; color: var(--color-primary); line-height: 1.3; display: block; margin-bottom: 0.2rem;">Choosing the Right Neighbourhood</a>
+                    <span style="font-size: 0.75rem; color: var(--color-body-light);">Sep 29, 2026</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== ARTICLE READER MODAL ==================== -->
+  <div id="articleReaderModal" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-card" style="max-width: 760px;">
+      <div class="modal-header">
+        <h3 id="readerTitle" class="modal-title">Article Preview</h3>
+        <button class="modal-close" onclick="closeModal('articleReaderModal')" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" id="readerBody">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-title">ESTATE HUB</div>
+          <div class="footer-tagline">Find Your Place. Build Your Future.</div>
+          <p class="footer-desc">
+            Estate Hub is a premier real estate discovery showcase presenting luxury apartments, independent villas, family residences, plots, and commercial properties across India.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="properties.html">All Properties</a></li>
+            <li><a href="residential.html">Residential Collection</a></li>
+            <li><a href="commercial.html">Commercial Properties</a></li>
+            <li><a href="projects.html">Development Projects</a></li>
+            <li><a href="services.html">Services & Advisory</a></li>
+            <li><a href="blog.html">Insights & Blog</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Property Types</h4>
+          <ul class="footer-links">
+            <li><a href="properties.html?category=apartments">Luxury Apartments</a></li>
+            <li><a href="properties.html?category=villas">Independent Villas</a></li>
+            <li><a href="properties.html?category=houses">Residential Houses</a></li>
+            <li><a href="properties.html?category=plots">Residential Plots</a></li>
+            <li><a href="properties.html?category=commercial">Office Spaces</a></li>
+            <li><a href="properties.html?category=commercial">Retail Showrooms</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Demo Contact</h4>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Estate Hub Demo Office, Property Avenue, Sample Business District, Demo City, India – 000000</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>+91 00000 00000</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>hello@example.com</span>
+          </div>
+
+          <h5 style="color: var(--color-white); font-size: 0.85rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">Newsletter (Demo)</h5>
+          <form class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="Your email address" required>
+            <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 ESTATE HUB. All rights reserved. Fictional business showcase.</div>
+        <div class="footer-bottom-links">
+          <a href="about.html">Privacy Notice (Demo)</a>
+          <a href="about.html">Terms of Service (Demo)</a>
+          <a href="contact.html">Support</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODALS ==================== -->
+  <div id="listPropertyModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="listPropertyTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="listPropertyTitle" class="modal-title">List Your Property with Estate Hub</h3>
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="listPropertyForm">
+          <div class="modal-form-grid">
+            <div class="form-group">
+              <label class="form-label" for="ownerName">Owner Full Name *</label>
+              <input type="text" id="ownerName" class="form-input" required placeholder="e.g. Ramesh Patel">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="ownerPhone">Phone Number *</label>
+              <input type="tel" id="ownerPhone" class="form-input" required placeholder="+91 98765 43210">
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="ownerEmail">Email Address *</label>
+              <input type="email" id="ownerEmail" class="form-input" required placeholder="name@example.com">
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="propTitleInput">Property Title *</label>
+              <input type="text" id="propTitleInput" class="form-input" required placeholder="e.g. 3-BHK Luxury Sun-Deck Apartment">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propCategoryInput">Property Category *</label>
+              <select id="propCategoryInput" class="form-select" required>
+                <option value="apartments">Luxury Apartment</option>
+                <option value="villas">Independent Villa</option>
+                <option value="houses">Residential House</option>
+                <option value="plots">Residential Plot</option>
+                <option value="commercial">Commercial Space</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propLocationInput">Locality & City *</label>
+              <input type="text" id="propLocationInput" class="form-input" required placeholder="e.g. Silver Oak, Bengaluru">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propPriceInput">Expected Price (INR) *</label>
+              <input type="text" id="propPriceInput" class="form-input" required placeholder="e.g. ₹1.25 Crore">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propAreaInput">Carpet / Built-up Area *</label>
+              <input type="text" id="propAreaInput" class="form-input" required placeholder="e.g. 1850 sq.ft.">
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="propDescInput">Property Details</label>
+              <textarea id="propDescInput" class="form-input" rows="3" placeholder="Provide key highlights..."></textarea>
+            </div>
+          </div>
+          <div id="listPropertyAlert" class="demo-alert"></div>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 1rem;">
+            <button type="button" class="btn btn-outline btn-modal-close">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit Demo Listing</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="favModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="favModalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="favModalTitle" class="modal-title">Your Shortlisted Favourites</h3>
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" id="favModalList"></div>
+    </div>
+  </div>
+
+  <button class="back-to-top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <script src="assets/js/properties.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script>
+    // Blog filtering & reader modal
+    const articlesDB = {
+      1: {
+        title: "Things to Consider Before Buying Your First Home",
+        category: "Buying Guide",
+        date: "Oct 15, 2026",
+        img: "assets/images/blog-01.webp",
+        content: `
+          <p>Acquiring your first residential property in India is both an emotional milestone and a significant financial undertaking. To ensure your decision remains sound for decades, keep these three foundational pillars in mind:</p>
+          <h4 style="margin: 1.25rem 0 0.5rem; font-size: 1.15rem;">1. Understand Carpet Area vs. Super Built-up Area</h4>
+          <p>Indian real estate historically suffered from confusion around loading percentages. Modern regulations prioritize clear Carpet Area—the actual usable net floor space enclosed within the inner walls of the apartment. Always compute the cost per square foot based on carpet area rather than loading-inflated figures.</p>
+          <h4 style="margin: 1.25rem 0 0.5rem; font-size: 1.15rem;">2. Document Due Diligence</h4>
+          <p>Never bypass reviewing the complete chain of title deeds, encumbrance certificates (EC for 30 years), commencement certificates, approved floor layout sanctions, and environmental clearances. When in doubt, engage a verified legal professional.</p>
+          <h4 style="margin: 1.25rem 0 0.5rem; font-size: 1.15rem;">3. Micro-Market Infrastructure</h4>
+          <p>Evaluate not just the present street conditions, but the planned civic roadmap: upcoming arterial flyovers, metro connectivity, drinking water lines, and storm-water drainage resilience during heavy monsoon spells.</p>
+        `
+      },
+      2: {
+        title: "Understanding Residential Property Investment",
+        category: "Property Investment",
+        date: "Oct 08, 2026",
+        img: "assets/images/blog-02.webp",
+        content: `
+          <p>Strategic residential property investments in India depend on identifying growth corridors prior to their full saturation. Key principles to consider include:</p>
+          <h4 style="margin: 1.25rem 0 0.5rem; font-size: 1.15rem;">1. Rental Yields vs. Capital Appreciation</h4>
+          <p>Residential rental yields in metropolitan cities generally range between 2.5% to 4.5% gross annually, whereas capital appreciation accounts for the primary long-term wealth compounding. Look for areas benefiting from commercial technology parks or financial district expansions.</p>
+          <h4 style="margin: 1.25rem 0 0.5rem; font-size: 1.15rem;">2. Developer Track Record</h4>
+          <p>Delivery history, construction quality, financial discipline, and post-handover facility management drastically affect resale premiums. Handpicked communities by established developers consistently command higher resale value over generic standalone projects.</p>
+        `
+      },
+      3: {
+        title: "How to Choose the Right Neighbourhood",
+        category: "Lifestyle",
+        date: "Sep 29, 2026",
+        img: "assets/images/blog-03.webp",
+        content: `
+          <p>A home does not end at your front door. The surrounding community dictates your commute stress, your children's schooling, and your evening recreation:</p>
+          <h4 style="margin: 1.25rem 0 0.5rem; font-size: 1.15rem;">1. The 15-Minute Urban Living Radius</h4>
+          <p>Prioritize neighbourhoods where essential healthcare, reputable schools, grocery avenues, and recreational parks are accessible within a 15-minute drive or walking perimeter.</p>
+          <h4 style="margin: 1.25rem 0 0.5rem; font-size: 1.15rem;">2. Low Noise Zoning & Tree Cover</h4>
+          <p>Green canopy cover lowers localized urban ambient heat, reduces dust infiltration, and promotes active outdoor lifestyles for all family members.</p>
+        `
+      },
+      4: {
+        title: "Staging Your Home for Maximum Buyer Appeal",
+        category: "Selling Guide",
+        date: "Sep 18, 2026",
+        img: "assets/images/living-room.webp",
+        content: `
+          <p>When presenting your property to discerning buyers, emotional resonance is paramount. Follow these architectural staging essentials:</p>
+          <h4 style="margin: 1.25rem 0 0.5rem; font-size: 1.15rem;">1. Optimize Natural Illumination</h4>
+          <p>Open all sheer curtains, wash balcony glass panels, and replace warm dim bulbs with daylight-balanced LED fixtures to emphasize spatial expansiveness.</p>
+          <h4 style="margin: 1.25rem 0 0.5rem; font-size: 1.15rem;">2. Neutral Styling and Decluttering</h4>
+          <p>Pack away personal memorabilia and excessive furniture. Clear pathways allow prospective buyers to project their own belongings and lifestyle into every room.</p>
+        `
+      },
+      5: {
+        title: "Modern Kitchen Design Trends for Indian Cooking",
+        category: "Home Design",
+        date: "Sep 05, 2026",
+        img: "assets/images/kitchen-interior.webp",
+        content: `
+          <p>Indian cooking involves distinctive techniques—intense aromatics, tempering spices, and high heat—requiring thoughtful kitchen layout design:</p>
+          <h4 style="margin: 1.25rem 0 0.5rem; font-size: 1.15rem;">1. High-Performance Extraction</h4>
+          <p>Standard recirculating hoods are insufficient. Choose high-suction baffles (1200+ m3/hr) connected to external exhaust ducts to preserve surrounding living room air purity.</p>
+          <h4 style="margin: 1.25rem 0 0.5rem; font-size: 1.15rem;">2. Stain & Heat-Resistant Counters</h4>
+          <p>Quartz and sintered stone surfaces offer superior resistance against turmeric and lemon acid staining compared to porous marble surfaces.</p>
+        `
+      },
+      6: {
+        title: "The Evolution of Hybrid Commercial Workspaces",
+        category: "Market Knowledge",
+        date: "Aug 22, 2026",
+        img: "assets/images/office-space.webp",
+        content: `
+          <p>The post-pandemic corporate workplace in India has moved away from rigid cubicle rows toward agile, collaborative environments:</p>
+          <h4 style="margin: 1.25rem 0 0.5rem; font-size: 1.15rem;">1. Acoustic Zoning & Focus Pods</h4>
+          <p>Open desk areas must be balanced with individual sound-insulated phone booths and quiet library spaces for uninterrupted deep cognitive focus.</p>
+          <h4 style="margin: 1.25rem 0 0.5rem; font-size: 1.15rem;">2. Wellness-Centric Building Standards</h4>
+          <p>Modern enterprise tenants demand high-efficiency MERV 13 air filtration, natural daylight access, and biophilic landscaped balconies to attract top professional talent.</p>
+        `
+      }
+    };
+
+    function readArticle(id) {
+      const art = articlesDB[id];
+      if (!art) return;
+      document.getElementById("readerTitle").textContent = art.title;
+      document.getElementById("readerBody").innerHTML = `
+        <img src="${art.img}" alt="${art.title}" style="width: 100%; height: 260px; object-fit: cover; border-radius: var(--radius-sm); margin-bottom: 1.25rem;">
+        <div style="display: flex; gap: 0.75rem; align-items: center; font-size: 0.82rem; color: var(--color-body-light); margin-bottom: 1.25rem;">
+          <span style="color: var(--color-gold); font-weight: 700; text-transform: uppercase;">${art.category}</span>
+          <span>•</span>
+          <span>${art.date}</span>
+        </div>
+        <div style="font-size: 0.95rem; line-height: 1.7; color: var(--color-body);">
+          ${art.content}
+        </div>
+      `;
+      openModal("articleReaderModal");
+    }
+
+    function filterBlogCategory(cat) {
+      const cards = document.querySelectorAll("#articlesContainer .blog-card");
+      cards.forEach(card => {
+        if (cat === "all" || card.getAttribute("data-category") === cat) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+
+    function handleBlogSearch() {
+      const q = document.getElementById("blogSearchInput").value.toLowerCase().trim();
+      const cards = document.querySelectorAll("#articlesContainer .blog-card");
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (!q || text.includes(q)) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+  </script>
+</body>
+</html>

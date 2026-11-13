@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Residential Properties | ESTATE HUB - Luxury Villas, Apartments & Homes</title>
+  <meta name="description" content="Discover premium residential homes, private villas, duplex penthouses, and gated community plots across India with Estate Hub.">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" aria-label="Estate Hub Homepage">
+        <div class="brand-mark">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">ESTATE HUB</span>
+          <span class="brand-tagline">Find Your Place. Build Your Future.</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+          <li class="nav-item has-dropdown">
+            <a href="properties.html" class="nav-link active">
+              Properties
+              <svg class="nav-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </a>
+            <div class="nav-dropdown">
+              <a href="properties.html" class="dropdown-link">All Properties</a>
+              <a href="residential.html" class="dropdown-link">Residential Properties</a>
+              <a href="commercial.html" class="dropdown-link">Commercial Properties</a>
+            </div>
+          </li>
+          <li class="nav-item"><a href="projects.html" class="nav-link">Projects</a></li>
+          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="fav-header-btn" aria-label="View Favourites" title="Saved Favourites">
+          <svg viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span class="fav-badge fav-count-badge" style="display: none;">0</span>
+        </button>
+        <button class="btn btn-primary btn-sm" onclick="openModal('listPropertyModal')">List Your Property</button>
+        <button class="menu-toggle" aria-label="Toggle Navigation Menu">
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==================== HERO ==================== -->
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span>&rsaquo;</span>
+          <a href="properties.html">Properties</a>
+          <span>&rsaquo;</span>
+          <span>Residential</span>
+        </nav>
+        <h1 class="page-hero-title">Residential Properties</h1>
+        <p class="page-hero-subtitle">
+          Sanctuaries designed for modern living. Explore signature apartments, garden villas, family homes, and residential plots.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== CATEGORY FILTER CHIPS ==================== -->
+    <section class="section section-cream" style="padding: 2.5rem 0 1.5rem;">
+      <div class="container">
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;">
+          <button class="btn btn-sm btn-primary res-filter-chip" data-category="all" onclick="filterResidential('all', this)">All Residential</button>
+          <button class="btn btn-sm btn-outline res-filter-chip" data-category="apartments" onclick="filterResidential('apartments', this)">Luxury Apartments</button>
+          <button class="btn btn-sm btn-outline res-filter-chip" data-category="villas" onclick="filterResidential('villas', this)">Independent Villas</button>
+          <button class="btn btn-sm btn-outline res-filter-chip" data-category="houses" onclick="filterResidential('houses', this)">Family Houses</button>
+          <button class="btn btn-sm btn-outline res-filter-chip" data-category="plots" onclick="filterResidential('plots', this)">Residential Plots</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== RESIDENTIAL LISTINGS GRID ==================== -->
+    <section class="section section-cream" style="padding-top: 1.5rem;">
+      <div class="container">
+        <div id="residentialGrid" class="property-grid">
+          <!-- Populated by script -->
+        </div>
+
+        <div class="demo-disclaimer text-center" style="margin-top: 3.5rem;">
+          <strong>Demo Notice:</strong> All residential property names, localities, specifications, and pricing metrics are illustrative demonstration data.
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== LIFESTYLE BENEFITS ==================== -->
+    <section class="section section-white">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">The Elevated Living Experience</span>
+          <h2 class="section-title">Designed for Modern Family Well-being</h2>
+          <p class="section-subtitle">Every home in our residential portfolio is chosen to satisfy rigorous standards of architectural harmony.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18"></path></svg>
+            </div>
+            <h3 class="feature-title">Abundant Natural Light</h3>
+            <p class="feature-desc">Orientation engineered to capture morning dawn, generous cross-ventilation, and expansive double-glazed acoustic windows.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <h3 class="feature-title">Gated Security</h3>
+            <p class="feature-desc">Multi-tier perimeter protection, CCTV coverage, vehicle boom barriers, and round-the-clock trained security personnel.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            </div>
+            <h3 class="feature-title">Community Green Parks</h3>
+            <p class="feature-desc">Lush tropical walking trails, children's adventure play areas, elder reflexology tracks, and outdoor amphitheaters.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </div>
+            <h3 class="feature-title">Turnkey Convenience</h3>
+            <p class="feature-desc">Fitted modular kitchens, Italian sanitaryware, high-capacity power backup, and dedicated on-site facility managers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== RESIDENTIAL CTA ==================== -->
+    <section class="section section-navy">
+      <div class="container text-center">
+        <span class="section-eyebrow" style="color: var(--color-gold-light);">Tailored Residential Advisory</span>
+        <h2 class="section-title" style="color: var(--color-white); max-width: 780px; margin: 0 auto 1.25rem;">
+          Looking for a Bespoke Villa or Skyline Penthouse?
+        </h2>
+        <p style="color: #C3CEDA; max-width: 600px; margin: 0 auto 2.5rem; font-size: 1.1rem;">
+          Speak with our residential consultants to schedule private walk-throughs or receive tailored property dossiers.
+        </p>
+        <div style="display: flex; gap: 1.25rem; justify-content: center; flex-wrap: wrap;">
+          <a href="contact.html" class="btn btn-primary btn-lg">Schedule Consultation</a>
+          <button class="btn btn-outline-white btn-lg" onclick="openModal('listPropertyModal')">List Your Residential Property</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-title">ESTATE HUB</div>
+          <div class="footer-tagline">Find Your Place. Build Your Future.</div>
+          <p class="footer-desc">
+            Estate Hub is a premier real estate discovery showcase presenting luxury apartments, independent villas, family residences, plots, and commercial properties across India.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="properties.html">All Properties</a></li>
+            <li><a href="residential.html">Residential Collection</a></li>
+            <li><a href="commercial.html">Commercial Properties</a></li>
+            <li><a href="projects.html">Development Projects</a></li>
+            <li><a href="services.html">Services & Advisory</a></li>
+            <li><a href="blog.html">Insights & Blog</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Property Types</h4>
+          <ul class="footer-links">
+            <li><a href="properties.html?category=apartments">Luxury Apartments</a></li>
+            <li><a href="properties.html?category=villas">Independent Villas</a></li>
+            <li><a href="properties.html?category=houses">Residential Houses</a></li>
+            <li><a href="properties.html?category=plots">Residential Plots</a></li>
+            <li><a href="properties.html?category=commercial">Office Spaces</a></li>
+            <li><a href="properties.html?category=commercial">Retail Showrooms</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Demo Contact</h4>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Estate Hub Demo Office, Property Avenue, Sample Business District, Demo City, India – 000000</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>+91 00000 00000</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>hello@example.com</span>
+          </div>
+
+          <h5 style="color: var(--color-white); font-size: 0.85rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">Newsletter (Demo)</h5>
+          <form class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="Your email address" required>
+            <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 ESTATE HUB. All rights reserved. Fictional business showcase.</div>
+        <div class="footer-bottom-links">
+          <a href="about.html">Privacy Notice (Demo)</a>
+          <a href="about.html">Terms of Service (Demo)</a>
+          <a href="contact.html">Support</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODALS ==================== -->
+  <div id="listPropertyModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="listPropertyTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="listPropertyTitle" class="modal-title">List Your Property with Estate Hub</h3>
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="listPropertyForm">
+          <div class="modal-form-grid">
+            <div class="form-group">
+              <label class="form-label" for="ownerName">Owner Full Name *</label>
+              <input type="text" id="ownerName" class="form-input" required placeholder="e.g. Ramesh Patel">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="ownerPhone">Phone Number *</label>
+              <input type="tel" id="ownerPhone" class="form-input" required placeholder="+91 98765 43210">
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="ownerEmail">Email Address *</label>
+              <input type="email" id="ownerEmail" class="form-input" required placeholder="name@example.com">
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="propTitleInput">Property Title *</label>
+              <input type="text" id="propTitleInput" class="form-input" required placeholder="e.g. 3-BHK Luxury Sun-Deck Apartment">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propCategoryInput">Property Category *</label>
+              <select id="propCategoryInput" class="form-select" required>
+                <option value="apartments">Luxury Apartment</option>
+                <option value="villas">Independent Villa</option>
+                <option value="houses">Residential House</option>
+                <option value="plots">Residential Plot</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propLocationInput">Locality & City *</label>
+              <input type="text" id="propLocationInput" class="form-input" required placeholder="e.g. Silver Oak, Bengaluru">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propPriceInput">Expected Price (INR) *</label>
+              <input type="text" id="propPriceInput" class="form-input" required placeholder="e.g. ₹1.25 Crore">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propAreaInput">Carpet / Built-up Area *</label>
+              <input type="text" id="propAreaInput" class="form-input" required placeholder="e.g. 1850 sq.ft.">
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="propDescInput">Property Highlights</label>
+              <textarea id="propDescInput" class="form-input" rows="3" placeholder="Provide key highlights..."></textarea>
+            </div>
+          </div>
+          <div id="listPropertyAlert" class="demo-alert"></div>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 1rem;">
+            <button type="button" class="btn btn-outline btn-modal-close">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit Demo Listing</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="favModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="favModalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="favModalTitle" class="modal-title">Your Shortlisted Favourites</h3>
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" id="favModalList"></div>
+    </div>
+  </div>
+
+  <button class="back-to-top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <script src="assets/js/properties.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script>
+    function filterResidential(cat, btn) {
+      document.querySelectorAll(".res-filter-chip").forEach(c => {
+        c.classList.remove("btn-primary");
+        c.classList.add("btn-outline");
+      });
+      btn.classList.remove("btn-outline");
+      btn.classList.add("btn-primary");
+
+      const grid = document.getElementById("residentialGrid");
+      if (!grid || typeof propertiesData === "undefined") return;
+
+      const resList = propertiesData.filter(p => p.residential && (cat === "all" || p.category === cat));
+      grid.innerHTML = resList.map(p => createPropertyCardHTML(p)).join("");
+      updateFavouriteButtonsUI();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const grid = document.getElementById("residentialGrid");
+      if (grid && typeof propertiesData !== "undefined") {
+        const resList = propertiesData.filter(p => p.residential);
+        grid.innerHTML = resList.map(p => createPropertyCardHTML(p)).join("");
+        updateFavouriteButtonsUI();
+      }
+    });
+  </script>
+</body>
+</html>

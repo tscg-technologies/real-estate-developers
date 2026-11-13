@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Properties | ESTATE HUB - Luxury Real Estate Marketplace</title>
+  <meta name="description" content="Search and filter through 14+ curated Indian residential apartments, private villas, plots, and commercial properties with live JavaScript filtering and sorting.">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" aria-label="Estate Hub Homepage">
+        <div class="brand-mark">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">ESTATE HUB</span>
+          <span class="brand-tagline">Find Your Place. Build Your Future.</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+          <li class="nav-item has-dropdown">
+            <a href="properties.html" class="nav-link active">
+              Properties
+              <svg class="nav-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </a>
+            <div class="nav-dropdown">
+              <a href="properties.html" class="dropdown-link">All Properties</a>
+              <a href="residential.html" class="dropdown-link">Residential Properties</a>
+              <a href="commercial.html" class="dropdown-link">Commercial Properties</a>
+            </div>
+          </li>
+          <li class="nav-item"><a href="projects.html" class="nav-link">Projects</a></li>
+          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="fav-header-btn" aria-label="View Favourites" title="Saved Favourites">
+          <svg viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span class="fav-badge fav-count-badge" style="display: none;">0</span>
+        </button>
+        <button class="btn btn-primary btn-sm" onclick="openModal('listPropertyModal')">List Your Property</button>
+        <button class="menu-toggle" aria-label="Toggle Navigation Menu">
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==================== PAGE HERO ==================== -->
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span>&rsaquo;</span>
+          <span>Properties</span>
+        </nav>
+        <h1 class="page-hero-title">Explore Properties</h1>
+        <p class="page-hero-subtitle">
+          Discover residential and commercial opportunities that match your needs. Filter by location, budget, bedrooms, and category.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== SEARCH & FILTER PANEL ==================== -->
+    <section class="section section-cream" style="padding-top: 3.5rem;">
+      <div class="container">
+        <div class="search-panel" style="margin-bottom: 2.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+            <div class="search-tabs" style="margin-bottom: 0; border: none; padding: 0;">
+              <button class="search-tab active" data-purpose="all" onclick="setFilterPurpose('all', this)">All</button>
+              <button class="search-tab" data-purpose="buy" onclick="setFilterPurpose('buy', this)">Buy</button>
+              <button class="search-tab" data-purpose="rent" onclick="setFilterPurpose('rent', this)">Rent</button>
+            </div>
+            <button class="btn btn-outline btn-sm" onclick="resetAllFilters()">Reset All Filters</button>
+          </div>
+
+          <!-- Comprehensive Filter Grid -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.25rem;">
+            <!-- Keyword / Location Text Search -->
+            <div class="form-group">
+              <label class="form-label" for="filterSearchText">Keyword / Locality</label>
+              <input type="text" id="filterSearchText" class="form-input" placeholder="e.g. Silver Oak, Villa, Bengaluru" oninput="applyFilters()">
+            </div>
+
+            <!-- Category -->
+            <div class="form-group">
+              <label class="form-label" for="filterCategory">Property Category</label>
+              <select id="filterCategory" class="form-select" onchange="applyFilters()">
+                <option value="all">All Categories</option>
+                <option value="apartments">Luxury Apartments</option>
+                <option value="villas">Independent Villas</option>
+                <option value="houses">Residential Houses</option>
+                <option value="plots">Residential Plots</option>
+                <option value="commercial">Commercial Properties</option>
+              </select>
+            </div>
+
+            <!-- Specific Locality Dropdown -->
+            <div class="form-group">
+              <label class="form-label" for="filterLocation">Locality</label>
+              <select id="filterLocation" class="form-select" onchange="applyFilters()">
+                <option value="all">All Localities</option>
+                <option value="Silver Oak">Silver Oak Residency</option>
+                <option value="Lakeview">Lakeview Gardens</option>
+                <option value="Maple Grove">Maple Grove Estate</option>
+                <option value="Green Valley">Green Valley Enclave</option>
+                <option value="Harmony Heights">Harmony Heights</option>
+                <option value="Sunrise Park">Sunrise Park</option>
+                <option value="The Urban Square">The Urban Square</option>
+              </select>
+            </div>
+
+            <!-- Bedrooms -->
+            <div class="form-group">
+              <label class="form-label" for="filterBedrooms">Bedrooms</label>
+              <select id="filterBedrooms" class="form-select" onchange="applyFilters()">
+                <option value="all">Any Bedrooms</option>
+                <option value="2">2 BHK</option>
+                <option value="3">3 BHK</option>
+                <option value="4">4+ BHK</option>
+              </select>
+            </div>
+
+            <!-- Bathrooms -->
+            <div class="form-group">
+              <label class="form-label" for="filterBathrooms">Bathrooms</label>
+              <select id="filterBathrooms" class="form-select" onchange="applyFilters()">
+                <option value="all">Any Bathrooms</option>
+                <option value="2">2+ Bathrooms</option>
+                <option value="3">3+ Bathrooms</option>
+                <option value="4">4+ Bathrooms</option>
+              </select>
+            </div>
+
+            <!-- Min Budget -->
+            <div class="form-group">
+              <label class="form-label" for="filterMinBudget">Min Budget</label>
+              <select id="filterMinBudget" class="form-select" onchange="applyFilters()">
+                <option value="">No Minimum</option>
+                <option value="5000000">₹50 Lakh</option>
+                <option value="10000000">₹1.0 Crore</option>
+                <option value="20000000">₹2.0 Crore</option>
+              </select>
+            </div>
+
+            <!-- Max Budget -->
+            <div class="form-group">
+              <label class="form-label" for="filterMaxBudget">Max Budget</label>
+              <select id="filterMaxBudget" class="form-select" onchange="applyFilters()">
+                <option value="">No Maximum</option>
+                <option value="8000000">₹80 Lakh</option>
+                <option value="15000000">₹1.5 Crore</option>
+                <option value="25000000">₹2.5 Crore</option>
+                <option value="50000000">₹5.0 Crore</option>
+              </select>
+            </div>
+
+            <!-- Min Area -->
+            <div class="form-group">
+              <label class="form-label" for="filterMinArea">Min Area (sq.ft.)</label>
+              <select id="filterMinArea" class="form-select" onchange="applyFilters()">
+                <option value="">Any Size</option>
+                <option value="1200">1,200+ sq.ft.</option>
+                <option value="2000">2,000+ sq.ft.</option>
+                <option value="3000">3,000+ sq.ft.</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sorting and Count Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <span style="font-size: 1.1rem; font-weight: 700; color: var(--color-primary);" id="resultsCount">Showing 14 properties</span>
+            <span class="text-muted" style="font-size: 0.85rem; margin-left: 0.5rem;">(Demo Catalog)</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <label for="sortOption" class="form-label" style="margin: 0; white-space: nowrap;">Sort By:</label>
+            <select id="sortOption" class="form-select" style="width: auto; padding: 0.5rem 1rem;" onchange="applyFilters()">
+              <option value="featured">Featured First</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="area-desc">Area: Largest First</option>
+              <option value="newest">Newest First</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Property Listing Grid -->
+        <div id="propertiesListingGrid" class="property-grid">
+          <!-- Populated dynamically by script -->
+        </div>
+
+        <!-- No Results Fallback -->
+        <div id="noResultsBox" style="display: none; padding: 4rem 2rem; text-align: center; background: var(--color-white); border-radius: var(--radius-md); border: 1px dashed var(--color-border); margin: 2rem 0;">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="1.5" style="margin-bottom: 1rem;">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+          <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">No Matching Properties Found</h3>
+          <p class="text-muted" style="max-width: 500px; margin: 0 auto 1.5rem;">
+            Try adjusting your budget, bedrooms, or removing specific location keywords to broaden your search results.
+          </p>
+          <button class="btn btn-primary" onclick="resetAllFilters()">Reset All Filters</button>
+        </div>
+
+        <div class="demo-disclaimer text-center" style="margin-top: 3.5rem;">
+          <strong>Demo Notice:</strong> All properties, localities, specifications, and pricing metrics are illustrative demonstration data.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-title">ESTATE HUB</div>
+          <div class="footer-tagline">Find Your Place. Build Your Future.</div>
+          <p class="footer-desc">
+            Estate Hub is a premier real estate discovery showcase presenting luxury apartments, independent villas, family residences, plots, and commercial properties across India.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="properties.html">All Properties</a></li>
+            <li><a href="residential.html">Residential Collection</a></li>
+            <li><a href="commercial.html">Commercial Properties</a></li>
+            <li><a href="projects.html">Development Projects</a></li>
+            <li><a href="services.html">Services & Advisory</a></li>
+            <li><a href="blog.html">Insights & Blog</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Property Types</h4>
+          <ul class="footer-links">
+            <li><a href="properties.html?category=apartments">Luxury Apartments</a></li>
+            <li><a href="properties.html?category=villas">Independent Villas</a></li>
+            <li><a href="properties.html?category=houses">Residential Houses</a></li>
+            <li><a href="properties.html?category=plots">Residential Plots</a></li>
+            <li><a href="properties.html?category=commercial">Office Spaces</a></li>
+            <li><a href="properties.html?category=commercial">Retail Showrooms</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Demo Contact</h4>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Estate Hub Demo Office, Property Avenue, Sample Business District, Demo City, India – 000000</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>+91 00000 00000</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>hello@example.com</span>
+          </div>
+
+          <h5 style="color: var(--color-white); font-size: 0.85rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">Newsletter (Demo)</h5>
+          <form class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="Your email address" required>
+            <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 ESTATE HUB. All rights reserved. Fictional business showcase.</div>
+        <div class="footer-bottom-links">
+          <a href="about.html">Privacy Notice (Demo)</a>
+          <a href="about.html">Terms of Service (Demo)</a>
+          <a href="contact.html">Support</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODAL: LIST YOUR PROPERTY ==================== -->
+  <div id="listPropertyModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="listPropertyTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="listPropertyTitle" class="modal-title">List Your Property with Estate Hub</h3>
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 1.25rem;">
+          Submit your property specifications to our advisory team for a demo appraisal and curated cataloging.
+        </p>
+
+        <form id="listPropertyForm">
+          <div class="modal-form-grid">
+            <div class="form-group">
+              <label class="form-label" for="ownerName">Owner Full Name *</label>
+              <input type="text" id="ownerName" class="form-input" required placeholder="e.g. Ramesh Patel">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="ownerPhone">Phone Number *</label>
+              <input type="tel" id="ownerPhone" class="form-input" required placeholder="+91 98765 43210">
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="ownerEmail">Email Address *</label>
+              <input type="email" id="ownerEmail" class="form-input" required placeholder="name@example.com">
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="propTitleInput">Property Title *</label>
+              <input type="text" id="propTitleInput" class="form-input" required placeholder="e.g. 3-BHK Luxury Sun-Deck Apartment">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propCategoryInput">Property Category *</label>
+              <select id="propCategoryInput" class="form-select" required>
+                <option value="apartments">Luxury Apartment</option>
+                <option value="villas">Independent Villa</option>
+                <option value="houses">Residential House</option>
+                <option value="plots">Residential Plot</option>
+                <option value="commercial">Commercial Space</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propLocationInput">Locality & City *</label>
+              <input type="text" id="propLocationInput" class="form-input" required placeholder="e.g. Silver Oak, Bengaluru">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propPriceInput">Expected Price (INR) *</label>
+              <input type="text" id="propPriceInput" class="form-input" required placeholder="e.g. ₹1.25 Crore">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propAreaInput">Carpet / Built-up Area *</label>
+              <input type="text" id="propAreaInput" class="form-input" required placeholder="e.g. 1850 sq.ft.">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propBedroomsInput">Bedrooms</label>
+              <select id="propBedroomsInput" class="form-select">
+                <option value="0">N/A (Plot/Commercial)</option>
+                <option value="1">1 BHK</option>
+                <option value="2">2 BHK</option>
+                <option value="3" selected>3 BHK</option>
+                <option value="4">4 BHK</option>
+                <option value="5">5+ BHK</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="propBathroomsInput">Bathrooms</label>
+              <select id="propBathroomsInput" class="form-select">
+                <option value="1">1 Bathroom</option>
+                <option value="2">2 Bathrooms</option>
+                <option value="3" selected>3 Bathrooms</option>
+                <option value="4">4+ Bathrooms</option>
+              </select>
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="propDescInput">Property Description</label>
+              <textarea id="propDescInput" class="form-input" rows="3" placeholder="Provide key highlights..."></textarea>
+            </div>
+          </div>
+
+          <div id="listPropertyAlert" class="demo-alert"></div>
+
+          <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 1rem;">
+            <button type="button" class="btn btn-outline btn-modal-close">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit Demo Listing</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: FAVOURITES ==================== -->
+  <div id="favModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="favModalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="favModalTitle" class="modal-title">Your Shortlisted Favourites</h3>
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" id="favModalList"></div>
+    </div>
+  </div>
+
+  <button class="back-to-top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <script src="assets/js/properties.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script>
+    // Properties Page Dynamic Filter Engine
+    let currentFilterPurpose = "all";
+
+    function setFilterPurpose(purpose, btn) {
+      currentFilterPurpose = purpose;
+      document.querySelectorAll(".search-tab").forEach(tab => tab.classList.remove("active"));
+      btn.classList.add("active");
+      applyFilters();
+    }
+
+    function resetAllFilters() {
+      currentFilterPurpose = "all";
+      document.querySelectorAll(".search-tab").forEach((tab, idx) => {
+        if (idx === 0) tab.classList.add("active");
+        else tab.classList.remove("active");
+      });
+      document.getElementById("filterSearchText").value = "";
+      document.getElementById("filterCategory").value = "all";
+      document.getElementById("filterLocation").value = "all";
+      document.getElementById("filterBedrooms").value = "all";
+      document.getElementById("filterBathrooms").value = "all";
+      document.getElementById("filterMinBudget").value = "";
+      document.getElementById("filterMaxBudget").value = "";
+      document.getElementById("filterMinArea").value = "";
+      document.getElementById("sortOption").value = "featured";
+      applyFilters();
+    }
+
+    function applyFilters() {
+      if (typeof propertiesData === "undefined") return;
+
+      const filters = {
+        search: document.getElementById("filterSearchText").value,
+        category: document.getElementById("filterCategory").value,
+        location: document.getElementById("filterLocation").value,
+        purpose: currentFilterPurpose,
+        bedrooms: document.getElementById("filterBedrooms").value,
+        bathrooms: document.getElementById("filterBathrooms").value,
+        minBudget: document.getElementById("filterMinBudget").value,
+        maxBudget: document.getElementById("filterMaxBudget").value,
+        minArea: document.getElementById("filterMinArea").value
+      };
+
+      let results = filterPropertiesList(filters);
+
+      // Sorting
+      const sortBy = document.getElementById("sortOption").value;
+      if (sortBy === "price-asc") {
+        results.sort((a, b) => a.price - b.price);
+      } else if (sortBy === "price-desc") {
+        results.sort((a, b) => b.price - a.price);
+      } else if (sortBy === "area-desc") {
+        results.sort((a, b) => b.area - a.area);
+      } else if (sortBy === "newest") {
+        results.reverse();
+      }
+
+      // Render
+      const grid = document.getElementById("propertiesListingGrid");
+      const noResultsBox = document.getElementById("noResultsBox");
+      const countEl = document.getElementById("resultsCount");
+
+      if (countEl) {
+        countEl.textContent = `Showing ${results.length} properties`;
+      }
+
+      if (results.length === 0) {
+        grid.innerHTML = "";
+        noResultsBox.style.display = "block";
+      } else {
+        noResultsBox.style.display = "none";
+        grid.innerHTML = results.map(item => createPropertyCardHTML(item)).join("");
+        updateFavouriteButtonsUI();
+      }
+    }
+
+    // Pre-populate filters from URL query parameters (e.g. from homepage search)
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has("purpose")) {
+        const p = urlParams.get("purpose");
+        currentFilterPurpose = p;
+        document.querySelectorAll(".search-tab").forEach(tab => {
+          if (tab.getAttribute("data-purpose") === p) tab.classList.add("active");
+          else tab.classList.remove("active");
+        });
+      }
+      if (urlParams.has("category")) {
+        document.getElementById("filterCategory").value = urlParams.get("category");
+      }
+      if (urlParams.has("location")) {
+        document.getElementById("filterLocation").value = urlParams.get("location");
+      }
+      if (urlParams.has("bedrooms")) {
+        document.getElementById("filterBedrooms").value = urlParams.get("bedrooms");
+      }
+      if (urlParams.has("maxBudget")) {
+        document.getElementById("filterMaxBudget").value = urlParams.get("maxBudget");
+      }
+      if (urlParams.has("search")) {
+        document.getElementById("filterSearchText").value = urlParams.get("search");
+      }
+
+      applyFilters();
+    });
+  </script>
+</body>
+</html>
